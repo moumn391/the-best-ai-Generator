@@ -35,28 +35,30 @@
             background: linear-gradient(to right, #007bff, #00c6ff);
             color: white;
         }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px;
+            background: #f8f9fa;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+        }
+        .dark-mode .feature-card {
+            background: #333;
+            color: white;
+        }
         footer {
             text-align: center;
             padding: 15px;
             background: #222;
             color: white;
             margin-top: 20px;
-        }
-        .dark-mode a {
-            color: white !important;
-        }
-        .dark-mode h1, 
-        .dark-mode h2, 
-        .dark-mode h3, 
-        .dark-mode p, 
-        .dark-mode label {
-            color: white !important;
-        }
-        .dark-mode input, 
-        .dark-mode textarea {
-            background: #333 !important;
-            color: white !important;
-            border: 1px solid #555 !important;
         }
     </style>
 </head>
@@ -75,6 +77,24 @@
     <section class="hero">
         <h1>AI Video Generator</h1>
         <p>Create AI-powered videos in seconds with cutting-edge technology!</p>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <i class="fas fa-video fa-3x"></i>
+            <h3>Generate Videos</h3>
+            <p>Convert text into high-quality AI-generated videos.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-magic fa-3x"></i>
+            <h3>Custom Effects</h3>
+            <p>Enhance your videos with AI-powered effects.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fas fa-share-alt fa-3x"></i>
+            <h3>Easy Sharing</h3>
+            <p>Share your AI-generated videos instantly.</p>
+        </div>
     </section>
 
     <div class="container mt-4">
