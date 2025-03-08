@@ -90,7 +90,7 @@
 
     <script>
         (function() {
-            emailjs.init("YOUR_EMAILJS_USER_ID");
+            emailjs.init("your_actual_emailjs_user_id");
         })();
 
         function toggleDarkMode() {
@@ -117,7 +117,7 @@
             event.preventDefault();
             let email = document.getElementById("email").value;
             let message = document.getElementById("message").value;
-            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+            emailjs.send("your_actual_service_id", "your_actual_template_id", {
                 from_email: email,
                 message: message
             }).then(response => {
