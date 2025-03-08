@@ -11,6 +11,10 @@
         body {
             transition: background 0.3s, color 0.3s;
         }
+        .dark-mode {
+            background: #121212;
+            color: white;
+        }
         .nav {
             display: flex;
             justify-content: space-between;
@@ -76,17 +80,18 @@
 
     <div id="contact" class="container mt-4">
         <h2>Contact Us</h2>
-        <form>
+        <form onsubmit="sendMessage(event)">
             <div class="mb-3">
                 <label for="email" class="form-label">Your Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
             </div>
             <div class="mb-3">
                 <label for="message" class="form-label">Your Message</label>
-                <textarea class="form-control" id="message" rows="3" placeholder="Enter your message"></textarea>
+                <textarea class="form-control" id="message" rows="3" placeholder="Enter your message" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
+        <p id="contactOutput" class="mt-2"></p>
     </div>
 
     <div id="login" class="container mt-4">
@@ -94,6 +99,7 @@
         <input type="text" id="username" class="form-control" placeholder="Enter username">
         <input type="password" id="password" class="form-control mt-2" placeholder="Enter password">
         <button class="btn btn-primary mt-2" onclick="login()">Login</button>
+        <p id="loginOutput" class="mt-2"></p>
     </div>
 
     <footer>
@@ -104,8 +110,33 @@
         function toggleDarkMode() {
             document.body.classList.toggle('dark-mode');
         }
+
+        function generateVideo() {
+            let prompt = document.getElementById("videoPrompt").value;
+            if (prompt) {
+                document.getElementById("output").innerText = "Generating video for: " + prompt;
+            } else {
+                document.getElementById("output").innerText = "Please enter a video idea!";
+            }
+        }
+
+        function sendMessage(event) {
+            event.preventDefault();
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            document.getElementById("contactOutput").innerText = `Thank you, ${email}. Your message has been sent!`;
+        }
+
+        function login() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+            if (username && password) {
+                document.getElementById("loginOutput").innerText = `Welcome, ${username}!`;
+            } else {
+                document.getElementById("loginOutput").innerText = "Please enter your username and password.";
+            }
+        }
     </script>
-    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
