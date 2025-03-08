@@ -90,7 +90,7 @@
 
     <script>
         (function() {
-            emailjs.init("your_actual_emailjs_user_id");
+            emailjs.init("lfEQyt1ihUN93pFZP"); // Replace with your actual EmailJS User ID
         })();
 
         function toggleDarkMode() {
@@ -106,27 +106,39 @@
 
         function subscribeEmail() {
             let email = document.getElementById("subscriberEmail").value;
-            if (email) {
+            if (validateEmail(email)) {
                 document.getElementById("subscribeOutput").innerText = `Thank you for subscribing, ${email}!`;
             } else {
                 document.getElementById("subscribeOutput").innerText = "Please enter a valid email.";
             }
         }
 
+        function validateEmail(email) {
+            let regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
         function sendMessage(event) {
             event.preventDefault();
             let email = document.getElementById("email").value;
             let message = document.getElementById("message").value;
-            emailjs.send("your_actual_service_id", "your_actual_template_id", {
+
+            if (!validateEmail(email) || message.trim() === "") {
+                document.getElementById("contactOutput").innerText = "Please enter a valid email and message.";
+                return;
+            }
+
+            emailjs.send("service_pm7hlhv", "template_2i6535a", {
                 from_email: email,
                 message: message
             }).then(response => {
                 document.getElementById("contactOutput").innerText = "Message sent successfully!";
             }).catch(error => {
-                document.getElementById("contactOutput").innerText = "Error sending message.";
+                document.getElementById("contactOutput").innerText = "Error sending message. Check EmailJS setup.";
             });
         }
     </script>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
