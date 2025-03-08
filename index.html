@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Video Generator</title>
+    <title>AI Video Generator - Revid Style</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         body {
-            transition: background 0.3s, color 0.3s;
-        }
-        .dark-mode {
-            background: #121212;
-            color: white;
+            background: #0f172a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
         }
         .nav {
             display: flex;
             justify-content: space-between;
             padding: 15px;
-            background: #222;
+            background: #1e293b;
             color: white;
         }
         .nav a {
@@ -31,82 +29,82 @@
         }
         .hero {
             text-align: center;
-            padding: 50px;
-            background: linear-gradient(to right, #007bff, #00c6ff);
+            padding: 80px 20px;
+            background: linear-gradient(to right, #2563eb, #9333ea);
             color: white;
         }
         .features {
             display: flex;
             justify-content: space-around;
             padding: 50px;
-            background: #f8f9fa;
+            background: #1e293b;
+            border-radius: 15px;
         }
         .feature-card {
             text-align: center;
             padding: 20px;
-            background: white;
+            background: #334155;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             width: 30%;
-        }
-        .dark-mode .feature-card {
-            background: #333;
             color: white;
         }
         footer {
             text-align: center;
             padding: 15px;
-            background: #222;
+            background: #1e293b;
             color: white;
             margin-top: 20px;
         }
+        .cta-btn {
+            display: inline-block;
+            background: #9333ea;
+            padding: 15px 25px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 18px;
+        }
     </style>
 </head>
-<body onload="loadDarkMode()">
+<body>
     <div class="nav">
         <div>
             <a href="#">Home</a>
             <a href="#about">About</a>
-            <a href="#videos">Videos</a>
+            <a href="#features">Features</a>
             <a href="#contact">Contact</a>
             <a href="#login">Login</a>
         </div>
-        <i class="fas fa-moon btn-toggle" onclick="toggleDarkMode()"></i>
     </div>
 
     <section class="hero">
         <h1>AI Video Generator</h1>
-        <p>Create AI-powered videos in seconds with cutting-edge technology!</p>
+        <p>Transform your ideas into stunning AI-powered videos instantly!</p>
+        <a href="#start" class="cta-btn">Start Creating</a>
     </section>
 
-    <section class="features">
+    <section id="features" class="features">
         <div class="feature-card">
             <i class="fas fa-video fa-3x"></i>
-            <h3>Generate Videos</h3>
-            <p>Convert text into high-quality AI-generated videos.</p>
+            <h3>AI-Powered Video Creation</h3>
+            <p>Generate professional-grade videos with AI in minutes.</p>
         </div>
         <div class="feature-card">
-            <i class="fas fa-magic fa-3x"></i>
-            <h3>Custom Effects</h3>
-            <p>Enhance your videos with AI-powered effects.</p>
+            <i class="fas fa-edit fa-3x"></i>
+            <h3>Customizable Templates</h3>
+            <p>Use AI-assisted templates to fit your unique style.</p>
         </div>
         <div class="feature-card">
-            <i class="fas fa-share-alt fa-3x"></i>
-            <h3>Easy Sharing</h3>
-            <p>Share your AI-generated videos instantly.</p>
+            <i class="fas fa-cloud-upload-alt fa-3x"></i>
+            <h3>Easy Export & Sharing</h3>
+            <p>Download or share your videos effortlessly.</p>
         </div>
     </section>
-
-    <div class="container mt-4">
-        <h2>Subscribe to Our Newsletter</h2>
-        <input type="email" id="subscriberEmail" class="form-control" placeholder="Enter your email">
-        <button class="btn btn-primary mt-2" onclick="subscribeEmail()">Subscribe</button>
-        <p id="subscribeOutput" class="mt-2"></p>
-    </div>
 
     <div id="contact" class="container mt-4">
         <h2>Contact Us</h2>
-        <form onsubmit="sendMessage(event)">
+        <form>
             <div class="mb-3">
                 <label for="email" class="form-label">Your Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
@@ -117,53 +115,12 @@
             </div>
             <button type="submit" class="btn btn-primary">Send Message</button>
         </form>
-        <p id="contactOutput" class="mt-2"></p>
     </div>
 
     <footer>
         <p>&copy; 2025 AI Video Generator. All rights reserved.</p>
     </footer>
 
-    <script>
-        (function() {
-            emailjs.init("lfEQyt1ihUN93pFZP");
-        })();
-
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
-        }
-
-        function loadDarkMode() {
-            if (localStorage.getItem('dark-mode') === 'true') {
-                document.body.classList.add('dark-mode');
-            }
-        }
-
-        function subscribeEmail() {
-            let email = document.getElementById("subscriberEmail").value;
-            if (email) {
-                document.getElementById("subscribeOutput").innerText = `Thank you for subscribing, ${email}!`;
-            } else {
-                document.getElementById("subscribeOutput").innerText = "Please enter a valid email.";
-            }
-        }
-
-        function sendMessage(event) {
-            event.preventDefault();
-            let email = document.getElementById("email").value;
-            let message = document.getElementById("message").value;
-            emailjs.send("service_pm7hlhv", "template_2i6535a", {
-                from_email: email,
-                message: message
-            }).then(response => {
-                document.getElementById("contactOutput").innerText = "Message sent successfully!";
-            }).catch(error => {
-                document.getElementById("contactOutput").innerText = "Error sending message.";
-            });
-        }
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body
->
+</body>
 </html>
