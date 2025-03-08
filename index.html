@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/solana-web3.js/1.30.0/solana-web3.min.js"></script>
     <style>
         body {
             background: #0f172a;
@@ -102,9 +103,15 @@
         </div>
     </section>
 
+    <div id="payment" class="container mt-4 text-center">
+        <h2>Get Premium Features</h2>
+        <p>Unlock advanced AI tools by upgrading to our Pro Plan.</p>
+        <button id="phantom-button" class="btn btn-success">Pay with Phantom</button>
+    </div>
+
     <div id="contact" class="container mt-4">
         <h2>Contact Us</h2>
-        <form>
+        <form id="contact-form">
             <div class="mb-3">
                 <label for="email" class="form-label">Your Email</label>
                 <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
@@ -120,6 +127,36 @@
     <footer>
         <p>&copy; 2025 AI Video Generator. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            emailjs.send("service_pm7hlhv", "template_2i6535a", {
+                email: document.getElementById("email").value,
+                message: document.getElementById("message").value
+            }, "lfEQyt1ihUN93pFZP").then(function(response) {
+                alert("Message Sent Successfully!");
+            }, function(error) {
+                alert("Failed to send message.");
+            });
+        });
+
+        document.getElementById('phantom-button').addEventListener('click', async function () {
+            if (window.solana && window.solana.isPhantom) {
+                try {
+                    await window.solana.connect();
+                    const provider = window.solana;
+                    const transaction = new solanaWeb3.Transaction();
+                    const recipient = "4HP5UEaWJYyR7E1NS6G8eQqgySNLC95HwLPcmUqChgjx";
+                    alert("Connected to Phantom Wallet! Now send SOL to: " + recipient);
+                } catch (error) {
+                    alert("Connection failed: " + error.message);
+                }
+            } else {
+                alert("Phantom Wallet not found. Please install it.");
+            }
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
